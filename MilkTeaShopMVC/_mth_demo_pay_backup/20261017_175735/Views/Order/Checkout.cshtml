@@ -1,0 +1,54 @@
+﻿@model MilkTeaShopMVC.Models.CheckoutViewModel
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-promotions.css")" />
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-rewards.css")" />
+@{ ViewBag.Title="Đặt hàng"; var total=Model.Items.Sum(x=>x.Subtotal); }
+<section class="page container"><div class="eyebrow">CHỈ CÒN MỘT BƯỚC</div>
+<h1>Hoàn tất <em>đặt hàng</em></h1><div class="cart-layout"><div class="panel formpanel">
+<h2>Thông tin nhận hàng</h2>
+@using(Html.BeginForm("Checkout","Order",FormMethod.Post)){
+ @Html.AntiForgeryToken()
+ @Html.ValidationSummary(false,"",new{@class="validation"})
+ <label class="field-label">Họ và tên *</label>
+ @Html.TextBoxFor(m=>m.CustomerName,new{@class="field",placeholder="Họ tên người nhận",maxlength="100",required="required"})
+ <label class="field-label">Số điện thoại *</label>
+ @Html.TextBoxFor(m=>m.Phone,new{@class="field",placeholder="09xxxxxxxx",maxlength="20",required="required"})
+ <label class="field-label">Địa chỉ giao hàng *</label>
+ @Html.TextBoxFor(m=>m.Address,new{@class="field",placeholder="Số nhà, đường, phường, quận...",maxlength="250",required="required"})
+ <label class="field-label">Ghi chú</label>
+ @Html.TextAreaFor(m=>m.Note,new{@class="field",rows="4",placeholder="Ít đá, ít đường...",maxlength="500"})
+ <div class="mth-promo-apply">
+ <label for="mth-promo-code">Mã giảm giá (nếu có)</label>
+ <div class="mth-promo-apply-row">
+  @Html.TextBoxFor(m=>m.PromoCode,new{@class="field",id="mth-promo-code",maxlength="40",placeholder="Nhập mã, ví dụ CHAO10"})
+  <button type="button" id="mth-promo-check" data-url="@Url.Action("Preview","Promotions")">Kiểm tra mã</button>
+ </div>
+ <div class="mth-promo-status" id="mth-promo-status">Xem <a href="@Url.Action("Index","Promotions")" target="_blank" rel="noopener">các mã ưu đãi</a> đang áp dụng.</div>
+</div>
+<div class="mth-rewards-box">
+ <label for="mth-points-input">Dùng điểm thưởng MilkTeaHouse (nếu có)</label>
+ <p>Điểm hiện có: <strong>@ViewBag.PointsBalance</strong> · 1 điểm = 200đ</p>
+ @Html.TextBoxFor(m=>m.PointsToRedeem,new{type="number",min="0",max=ViewBag.PointsBalance,@class="field",id="mth-points-input",step="1"})
+ <small>Điểm sẽ được giữ khi đặt hàng và hoàn lại nếu hủy đơn chưa thanh toán. Điểm mới chỉ cộng sau khi hoàn thành và thanh toán.</small>
+ <p id="mth-points-status" aria-live="polite"></p>
+ <a href="@Url.Action("Index","Loyalty")">Xem lịch sử điểm</a>
+</div>
+<button class="btn primary wide" type="submit">Xác nhận đặt hàng →</button>
+}
+</div><aside class="panel summary"><h2>Đơn hàng của bạn</h2>
+@foreach(var item in Model.Items){
+ <div class="summary-line"><span>@item.Quantity × @item.ProductName (size @item.Size)
+  @if(!string.IsNullOrWhiteSpace(item.ToppingSummary)){
+   <small style="display:block">Topping: @item.ToppingSummary</small>
+  }
+ </span><b>@item.Subtotal.ToString("N0") ₫</b></div>
+}
+<hr/><div class="summary-line"><span>Tạm tính</span><b>@total.ToString("N0") ₫</b></div>
+<div class="summary-line"><span>Khuyến mãi</span><b id="mth-promo-discount">0 đ</b></div>
+<div class="summary-line"><span>Dùng điểm</span><b id="mth-points-discount">0 đ</b></div>
+<div class="summary-line grand"><span>Thành tiền</span><b class="mth-promo-total" id="mth-promo-grand" data-original="@total">@total.ToString("N0") đ</b></div>
+<p class="sub">Thanh toán khi nhận hàng. Phí giao hàng chưa bao gồm và sẽ được xác nhận riêng.</p>
+</aside></div></section>
+
+<script src="@Url.Content("~/Scripts/mth-promotions.js")"></script>
+
+<script src="@Url.Content("~/Scripts/mth-rewards.js")"></script>

@@ -1,0 +1,59 @@
+﻿@model MilkTeaShopMVC.Models.ProductDetailViewModel
+@{ ViewBag.Title = Model.Product.Name; }
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-toppings.css")" />
+<section class="page container">
+ <a href="@Url.Action("Index","Menu")" class="back">← Quay lại thực đơn</a>
+ <div class="detail-grid">
+  <div class="detail-art @Model.Product.Theme" style="position:relative;overflow:hidden;padding:0;">
+   @if (!string.IsNullOrWhiteSpace(Model.Product.ImageUrl)) {
+    <img src="@Url.Content("~" + Model.Product.ImageUrl)" alt="@Model.Product.Name"
+         class="detail-product-image" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" />
+   } else {
+    <span>@Model.Product.Emoji</span><div>FRESHLY BREWED · WITH LOVE</div>
+   }
+  </div>
+  <div class="detail-text">
+   <div class="eyebrow">MILKTEAHOUSE / CHỌN MÓN</div>
+   <h1>@Model.Product.Name</h1>
+   <p>@Model.Product.Description</p>
+   <div class="price-big">@Model.Product.Price.ToString("N0") ₫ <small>Giá size M, chưa gồm topping</small></div>
+   @using (Html.BeginForm("Add", "Cart", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="productId" value="@Model.Product.Id" />
+    <div id="mth-topping-config" data-base-price="@Model.Product.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)" data-large-extra="7000">
+     <label class="field-label">Chọn size</label>
+     <div class="size-row">
+      <label><input type="radio" name="size" value="M" checked="checked" /> <span>Size M <small>Giá gốc</small></span></label>
+      <label><input type="radio" name="size" value="L" /> <span>Size L <small>+ 7.000 ₫</small></span></label>
+     </div>
+     <div class="mth-toppings-head">
+      <div><span class="field-label">Thêm topping</span><small>Chọn nhiều loại · tối đa 5 phần mỗi loại, 20 phần mỗi ly</small></div>
+      <button type="button" class="mth-toppings-clear">Bỏ chọn tất cả</button>
+     </div>
+     <div class="mth-toppings-list">
+      @foreach (var t in Model.Toppings) {
+       <div class="mth-topping-row" data-price="@t.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)">
+        <div class="mth-topping-info"><strong>@t.Name</strong><small>+@t.Price.ToString("N0") ₫ / phần</small></div>
+        <input type="hidden" name="toppingIds" value="@t.Id" />
+        <div class="mth-stepper">
+         <button type="button" class="mth-minus" aria-label="Giảm @t.Name">−</button>
+         <input class="mth-topping-qty" name="toppingQuantities" type="number" min="0" max="5" step="1" value="0" aria-label="Số phần @t.Name" />
+         <button type="button" class="mth-plus" aria-label="Tăng @t.Name">+</button>
+        </div>
+       </div>
+      }
+     </div>
+     <label class="field-label" for="quantity">Số lượng ly</label>
+     <input class="field smallfield" id="quantity" type="number" min="1" max="30" name="quantity" value="1" required="required" />
+     <div class="mth-price-box" aria-live="polite">
+      <div><span>Topping mỗi ly</span><strong id="mth-topping-total">0 ₫</strong></div>
+      <div><span>Giá mỗi ly</span><strong id="mth-unit-total">@Model.Product.Price.ToString("N0") ₫</strong></div>
+      <div class="mth-grand-total"><span>Tạm tính</span><strong id="mth-grand-total">@Model.Product.Price.ToString("N0") ₫</strong></div>
+     </div>
+    </div>
+    <button type="submit" class="btn primary wide">🛒 Thêm vào giỏ hàng</button>
+   }
+  </div>
+ </div>
+</section>
+<script src="@Url.Content("~/Scripts/mth-toppings.js")"></script>

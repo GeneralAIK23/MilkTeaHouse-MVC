@@ -1,0 +1,23 @@
+﻿@model MilkTeaShopMVC.Models.CustomerProfileViewModel
+@{ ViewBag.Title = "Thông tin tài khoản"; }
+<section class="page container mts-account-page">
+  <div class="mts-account-card">
+    <div class="eyebrow">MILKTEAHOUSE / KHÁCH HÀNG</div>
+    <h1>Thông tin tài khoản</h1>
+    @if (TempData["Success"] != null) { <div class="alert success">@TempData["Success"]</div> }
+    @using (Html.BeginForm("Profile", "Account", FormMethod.Post)) {
+      @Html.AntiForgeryToken()
+      @Html.ValidationSummary(false, "", new { @class = "validation" })
+      <label class="field-label">Email (không thay đổi tại đây)</label>
+      <input class="field" value="@Model.Email" type="email" readonly="readonly" />
+      <label class="field-label" for="FullName">Họ và tên</label>
+      @Html.TextBoxFor(m => m.FullName, new { @class = "field", maxlength = "100", required = "required" })
+      <label class="field-label" for="Phone">Số điện thoại</label>
+      @Html.TextBoxFor(m => m.Phone, new { @class = "field", maxlength = "20", autocomplete = "tel" })
+      <label class="field-label" for="Address">Địa chỉ giao hàng</label>
+      @Html.TextBoxFor(m => m.Address, new { @class = "field", maxlength = "250", autocomplete = "street-address" })
+      <button class="btn primary wide mts-auth-submit" type="submit">Lưu thông tin</button>
+    }
+    <p><a href="@Url.Action("MyOrders", "Order")">Xem đơn hàng của tôi →</a></p>
+  </div>
+</section>

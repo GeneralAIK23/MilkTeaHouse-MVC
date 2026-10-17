@@ -1,0 +1,26 @@
+﻿/* MilkTeaShop Contact - tách riêng khỏi site.css để không ảnh hưởng trang bán hàng. */
+.contact-hero{background:radial-gradient(circle at 78% 28%,#3b597e 0%,transparent 41%),linear-gradient(115deg,#102542 5%,#25456d 68%,#142c4c 100%);color:white;position:relative;overflow:hidden}
+.contact-hero:before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(ellipse at 90% 100%,transparent 0 52px,rgba(255,255,255,.035) 54px 57px,transparent 60px 90px);pointer-events:none}
+.contact-hero-inner{position:relative;padding-top:82px;padding-bottom:77px}
+.contact-crumb{font-size:13px;margin-bottom:20px;color:#d9e6f7}.contact-crumb a{color:inherit}.contact-crumb a:hover{text-decoration:underline}
+.contact-hero h1{font-size:clamp(27px,3vw,39px);line-height:1.35;letter-spacing:-.7px;max-width:900px;margin:0 0 14px;font-weight:800}
+.contact-hero p{font-size:14px;color:#e1e9f5;max-width:700px;margin:0}
+.contact-section{padding:65px 0 85px;background:linear-gradient(125deg,#f5f8fe 0%,#eaf1fb 62%,#fdf9f4 100%)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(290px,.85fr);gap:34px;align-items:start}
+.contact-eyebrow{font-size:11px;letter-spacing:2px;color:#b66a40;font-weight:800;margin-bottom:8px}
+.contact-form-column h2{font-size:clamp(26px,3vw,36px);color:#17355c;margin:0 0 8px;letter-spacing:-.7px}
+.contact-intro{font-size:14px;margin:0 0 25px;color:#455c7d}
+.contact-form{display:block}.contact-fields-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px;margin-bottom:17px}
+.contact-input{display:block;background:white;width:100%;border:1px solid #e2e8f1;border-radius:10px;padding:13px 16px;color:#263d5e;font-size:14px;outline:none;box-shadow:0 3px 12px rgba(20,40,80,.025)}
+.contact-input:focus{border-color:#5884bc;box-shadow:0 0 0 3px rgba(81,128,183,.14)}
+.contact-textarea{min-height:152px;resize:vertical}.contact-consent{display:flex;gap:9px;align-items:flex-start;margin:17px 0 8px;color:#3f5672;font-size:12px;cursor:pointer}
+.contact-consent input{margin-top:3px;accent-color:#19427c}.contact-submit{background:#123c86;color:white;border:none;border-radius:24px;padding:12px 24px;cursor:pointer;font-size:12px;font-weight:800;margin-top:14px;letter-spacing:.2px;transition:background .2s}
+.contact-submit:hover{background:#092b68}.contact-submit span{margin-left:6px}.contact-validation{display:block;color:#af3440;font-size:12px;margin-top:5px}
+.contact-alert{padding:15px 17px;border-radius:10px;margin-bottom:20px;font-size:13px}.contact-alert.success{background:#e4f5e9;color:#1e6939;border:1px solid #b8e1c8}
+.contact-note{color:#617693;font-size:11px;margin-top:17px}.contact-honeypot{position:absolute;left:-9999px;height:1px;overflow:hidden}
+.contact-info-card{border-radius:18px;background:#fff;padding:35px 31px;box-shadow:0 20px 50px rgba(16,44,85,.065);color:#274059}
+.contact-logo-mark{font-size:38px;text-align:center;margin-bottom:3px}.contact-business-name{font-weight:800;text-align:center;color:#213c5b;font-size:27px;letter-spacing:-.7px}.contact-business-name span{color:#b86c3e}.contact-business-tagline{text-align:center;color:#a16d49;font-size:10px;font-weight:800;letter-spacing:1.1px;margin:2px 0 21px}
+.contact-info-divider{height:1px;background:#e9edf5;margin:18px 0 24px}.contact-info-card h3{font-size:17px;margin:0 0 18px;color:#16345b}.contact-info-card p{font-size:13px;line-height:1.9;margin:10px 0}.contact-info-card strong{color:#19365b}
+.contact-info-bottom{background:#f5f8fe;color:#667e9a;padding:16px;border-radius:12px;font-size:12px;margin-top:26px}
+@media(max-width:840px){.contact-grid{grid-template-columns:1fr}.contact-info-card{max-width:none}.contact-hero-inner{padding-top:55px;padding-bottom:50px}}
+@media(max-width:530px){.contact-section{padding:38px 0 55px}.contact-fields-grid{grid-template-columns:1fr;gap:12px}.contact-info-card{padding:25px 21px}.contact-hero h1{font-size:26px}}

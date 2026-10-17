@@ -1,0 +1,23 @@
+﻿@model MilkTeaShopMVC.Models.CustomerRegisterViewModel
+@{ ViewBag.Title = "Đăng ký khách hàng"; }
+<section class="page container mts-account-page">
+  <div class="mts-account-card">
+    <div class="eyebrow">MILKTEASHOP / TÀI KHOẢN KHÁCH HÀNG</div>
+    <h1>Đăng ký</h1>
+    <p class="sub">Tạo tài khoản để đặt trà sữa và theo dõi đơn hàng của bạn.</p>
+    @using (Html.BeginForm("Register", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post)) {
+      @Html.AntiForgeryToken()
+      @Html.ValidationSummary(false, "", new { @class = "validation" })
+      <label class="field-label" for="FullName">Họ và tên *</label>
+      @Html.TextBoxFor(m => m.FullName, new { @class = "field", autocomplete = "name", maxlength = "100", required = "required" })
+      <label class="field-label" for="Email">Email *</label>
+      @Html.TextBoxFor(m => m.Email, new { @class = "field", type = "email", autocomplete = "email", maxlength = "120", required = "required" })
+      <label class="field-label" for="Password">Mật khẩu (ít nhất 8 ký tự) *</label>
+      @Html.PasswordFor(m => m.Password, new { @class = "field", autocomplete = "new-password", minlength = "8", required = "required" })
+      <label class="field-label" for="ConfirmPassword">Nhập lại mật khẩu *</label>
+      @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "field", autocomplete = "new-password", required = "required" })
+      <button class="btn primary wide mts-auth-submit" type="submit">Tạo tài khoản →</button>
+    }
+    <p class="mts-auth-switch">Đã có tài khoản? <a href="@Url.Action("Login", "Account", new { returnUrl = ViewBag.ReturnUrl })">Đăng nhập</a></p>
+  </div>
+</section>

@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "Trang chủ MilkTeaHouse";
+}
+<link rel="stylesheet" href="@Url.Content("~/Content/milkteahouse-home.css")" />
+<div class="mth-home" id="mthHome">
+    <section class="mth-hero" aria-label="Ưu đãi và giới thiệu MilkTeaHouse">
+        <div class="mth-hero-track" data-mth-slider aria-roledescription="carousel" aria-label="Banner giới thiệu MilkTeaHouse">
+            <article class="mth-hero-slide mth-hero-amber is-active" data-mth-slide aria-hidden="false" aria-label="Banner 1 trong 3">
+                <div class="mth-hero-inner">
+                    <div class="mth-hero-copy">
+                        <span class="mth-overline mth-overline-light"><i></i> MILKTEAHOUSE · VỊ NGON MỖI NGÀY</span>
+                        <h1>Đậm vị trà.<br /><em>Ngọt từng khoảnh khắc.</em></h1>
+                        <p>Trà sữa thơm béo, trân châu hấp dẫn và những phút giây thư giãn dành riêng cho bạn.</p>
+                        <div class="mth-hero-actions">
+                            <a class="mth-btn mth-btn-cream" href="@Url.Action("Index", "Menu")">Khám phá thực đơn <span aria-hidden="true">↗</span></a>
+                            <a class="mth-hero-text-link" href="#mth-story">Câu chuyện của chúng mình <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                    <div class="mth-hero-visual" aria-hidden="true">
+                        <span class="mth-hero-halo"></span>
+                        <img class="mth-hero-drink mth-hero-drink-main" src="@Url.Content("~/Content/images/products/tra-sua-tran-chau.png")" alt="" />
+                        <img class="mth-hero-drink mth-hero-drink-secondary" src="@Url.Content("~/Content/images/products/tra-sua-o-long.png")" alt="" />
+                        <span class="mth-hero-stamp">TEA<br />TIME <b>♥</b></span>
+                    </div>
+                </div>
+            </article>
+            <article class="mth-hero-slide mth-hero-matcha" data-mth-slide aria-hidden="true" aria-label="Banner 2 trong 3">
+                <div class="mth-hero-inner">
+                    <div class="mth-hero-copy">
+                        <span class="mth-overline mth-overline-light"><i></i> BỘ SƯU TẬP TRÀ XANH</span>
+                        <h2>Một chút thanh mát.<br /><em>Trọn vẹn cảm hứng.</em></h2>
+                        <p>Thêm sắc xanh vào ngày mới với những lựa chọn matcha dịu nhẹ và mát lành.</p>
+                        <div class="mth-hero-actions">
+                            <a class="mth-btn mth-btn-cream" href="@Url.Action("Index", "Menu", new { search = "matcha" })">Khám phá vị matcha <span aria-hidden="true">↗</span></a>
+                            <a class="mth-hero-text-link" href="#mth-values">Điều tạo nên khác biệt <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                    <div class="mth-hero-visual" aria-hidden="true">
+                        <span class="mth-hero-halo"></span>
+                        <img class="mth-hero-drink mth-hero-drink-main" src="@Url.Content("~/Content/images/products/tra-sua-matcha.png")" alt="" />
+                        <img class="mth-hero-drink mth-hero-drink-secondary" src="@Url.Content("~/Content/images/products/matcha-da-xay.png")" alt="" />
+                        <span class="mth-hero-stamp">MATCHA<br /><b>LOVE</b></span>
+                    </div>
+                </div>
+            </article>
+            <article class="mth-hero-slide mth-hero-fruit" data-mth-slide aria-hidden="true" aria-label="Banner 3 trong 3">
+                <div class="mth-hero-inner">
+                    <div class="mth-hero-copy">
+                        <span class="mth-overline mth-overline-light"><i></i> NHỮNG NGÀY RỰC RỠ</span>
+                        <h2>Trái cây tươi vui.<br /><em>Chạm vị mùa hè.</em></h2>
+                        <p>Một chút chua ngọt cân bằng cùng hương trái cây, cho ngày của bạn thêm sảng khoái.</p>
+                        <div class="mth-hero-actions">
+                            <a class="mth-btn mth-btn-cream" href="@Url.Action("Index", "Menu")">Chọn món yêu thích <span aria-hidden="true">↗</span></a>
+                            <a class="mth-hero-text-link" href="@Url.Action("Index", "Contact")">Kết nối cùng MilkTeaHouse <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                    <div class="mth-hero-visual" aria-hidden="true">
+                        <span class="mth-hero-halo"></span>
+                        <img class="mth-hero-drink mth-hero-drink-main" src="@Url.Content("~/Content/images/products/tra-dao-cam-sa.png")" alt="" />
+                        <img class="mth-hero-drink mth-hero-drink-secondary" src="@Url.Content("~/Content/images/products/tra-chanh-day.png")" alt="" />
+                        <span class="mth-hero-stamp">FRESH<br /><b>DAY</b></span>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="mth-hero-controls" aria-label="Điều khiển banner">
+            <button type="button" class="mth-hero-arrow" data-mth-prev aria-label="Banner trước">‹</button>
+            <div class="mth-hero-dots" role="group" aria-label="Chọn banner">
+                <button type="button" class="is-active" data-mth-dot="0" aria-label="Chuyển đến banner 1" aria-current="true"></button>
+                <button type="button" data-mth-dot="1" aria-label="Chuyển đến banner 2"></button>
+                <button type="button" data-mth-dot="2" aria-label="Chuyển đến banner 3"></button>
+            </div>
+            <button type="button" class="mth-hero-arrow" data-mth-next aria-label="Banner tiếp theo">›</button>
+        </div>
+    </section>
+
+    <section class="mth-intro" id="mth-story">
+        <div class="mth-shell mth-intro-grid">
+            <div class="mth-intro-copy">
+                <span class="mth-overline"><i></i> XIN CHÀO TỪ MILKTEAHOUSE</span>
+                <h2>Không chỉ là trà sữa.<br /><em>Đó là khoảng thời gian dành cho bạn.</em></h2>
+                <p>MilkTeaHouse được xây dựng từ một ý tưởng đơn giản: biến việc chọn một ly trà thành trải nghiệm vui vẻ, tiện lợi và mang dấu ấn cá nhân.</p>
+                <p>Khám phá những hương vị bạn yêu thích, chọn kích cỡ, thêm topping và đặt món ngay trên website.</p>
+                <a class="mth-link-arrow" href="@Url.Action("Index", "Menu")">Khám phá thực đơn <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="mth-editorial" aria-label="Ảnh đồ uống MilkTeaHouse">
+                <img src="@Url.Content("~/Content/images/products/tra-sua-o-long.png")" alt="Một ly trà sữa tại MilkTeaHouse" loading="lazy" />
+                <div class="mth-editorial-seal"><span>VỊ NGON<br />CỦA BẠN</span><b>✳</b></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mth-values" id="mth-values">
+        <div class="mth-shell">
+            <div class="mth-centered-head">
+                <span class="mth-overline"><i></i> ĐIỀU CHÚNG MÌNH THEO ĐUỔI</span>
+                <h2>Tầm nhìn · Sứ mệnh · Giá trị</h2>
+                <p>Những nguyên tắc định hướng cách chúng mình tạo nên trải nghiệm MilkTeaHouse.</p>
+            </div>
+            <div class="mth-value-grid">
+                <article class="mth-value-card"><span class="mth-value-icon" aria-hidden="true">◎</span><h3>TẦM NHÌN</h3><p>Hướng tới một không gian thưởng trà gần gũi, dễ tiếp cận và phù hợp với nhịp sống hiện đại.</p></article>
+                <article class="mth-value-card"><span class="mth-value-icon" aria-hidden="true">♧</span><h3>SỨ MỆNH</h3><p>Giúp mọi người lựa chọn thức uống yêu thích và đặt hàng thuận tiện qua trải nghiệm trực tuyến.</p></article>
+                <article class="mth-value-card"><span class="mth-value-icon" aria-hidden="true">✧</span><h3>GIÁ TRỊ CỐT LÕI</h3><p>Chú trọng sự rõ ràng, đa dạng lựa chọn, tính tiện lợi và tinh thần lắng nghe khách hàng.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="mth-philosophy">
+        <div class="mth-shell mth-philosophy-grid">
+            <div class="mth-philosophy-media"><img src="@Url.Content("~/Content/images/products/tra-dao-cam-sa.png")" alt="Thức uống trà trái cây tại MilkTeaHouse" loading="lazy" /></div>
+            <div class="mth-philosophy-copy">
+                <span class="mth-overline"><i></i> TRIẾT LÝ PHỤC VỤ</span>
+                <h2>Mỗi lựa chọn nhỏ.<br /><em>Một niềm vui riêng.</em></h2>
+                <p>Mỗi người có một khẩu vị khác nhau. Vì vậy, MilkTeaHouse mang đến những lựa chọn để bạn tự tạo nên món uống phù hợp: trà sữa hay trà trái cây, size M hay size L, thêm topping theo ý thích.</p>
+                <div class="mth-checks"><span><b>✓</b> Tùy chọn kích cỡ</span><span><b>✓</b> Thêm topping linh hoạt</span><span><b>✓</b> Đặt hàng và theo dõi trực tuyến</span></div>
+                <a class="mth-btn mth-btn-blue" href="@Url.Action("Index", "Menu")">Đến trang Thực đơn <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="mth-journey">
+        <div class="mth-shell">
+            <div class="mth-centered-head"><span class="mth-overline"><i></i> HÀNH TRÌNH TRẢI NGHIỆM</span><h2>Từ chọn món đến tận hưởng</h2><p>Chỉ vài bước đơn giản để có ly trà hợp gu của bạn.</p></div>
+            <div class="mth-journey-line">
+                <article><span>01</span><h3>Khám phá</h3><p>Vào trang Thực đơn để tìm hương vị yêu thích.</p></article>
+                <article><span>02</span><h3>Tùy chỉnh</h3><p>Chọn size, topping và số lượng theo nhu cầu.</p></article>
+                <article><span>03</span><h3>Đặt hàng</h3><p>Đăng nhập và xác nhận thông tin đặt hàng.</p></article>
+                <article><span>04</span><h3>Theo dõi</h3><p>Xem đơn hàng đã đặt trong tài khoản của bạn.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="mth-endcap" aria-label="Kết nối với MilkTeaHouse">
+        <div class="mth-shell mth-endcap-grid">
+            <div><span class="mth-overline mth-overline-light"><i></i> ĐỒNG HÀNH CÙNG MILKTEAHOUSE</span><h2>Chia sẻ một ly trà.<br /><em>Kết nối nhiều niềm vui.</em></h2><p>Muốn tìm hiểu thực đơn, trao đổi với chúng mình hoặc đăng ký tìm hiểu cơ hội hợp tác? MilkTeaHouse luôn sẵn sàng lắng nghe.</p></div>
+            <div class="mth-endcap-links"><a class="mth-btn mth-btn-cream" href="@Url.Action("Index", "Contact")">Liên hệ với chúng mình <span aria-hidden="true">↗</span></a><a class="mth-btn mth-btn-outline" href="@Url.Action("Index", "Franchise")">Tìm hiểu nhượng quyền <span aria-hidden="true">↗</span></a></div>
+        </div>
+    </section>
+</div>
+<script src="@Url.Content("~/Scripts/milkteahouse-home.js")" defer></script>

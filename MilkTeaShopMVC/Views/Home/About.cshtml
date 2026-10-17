@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Về chúng tôi | MilkTeaHouse";
+}
+<link rel="stylesheet" href="@Url.Content("~/Content/milkteahouse-about.css")" />
+
+<main class="mth-about" id="mth-about-main">
+    <section class="mtha-hero" aria-labelledby="mtha-title">
+        <div class="mtha-container mtha-hero-grid">
+            <div class="mtha-hero-copy">
+                <span class="mtha-eyebrow"><span class="mtha-small-star" aria-hidden="true">✦</span> CÂU CHUYỆN MILKTEAHOUSE</span>
+                <h1 id="mtha-title">Một ly trà ngon,<br /><em>thêm một lý do để mỉm cười.</em></h1>
+                <p class="mtha-lead">Giữa những ngày bận rộn, đôi khi niềm vui bắt đầu từ điều rất nhỏ: một ly trà sữa đúng vị, một cuộc hẹn cùng bạn bè, hay vài phút dành riêng cho mình.</p>
+                <p>MilkTeaHouse mong được đồng hành trong những khoảnh khắc ấy – bằng những hương vị dễ thương, lựa chọn linh hoạt và sự đón tiếp chân thành.</p>
+                <div class="mtha-actions">
+                    <a class="mtha-btn mtha-btn-primary" href="@Url.Action("Index", "Menu")">Khám phá thực đơn <span aria-hidden="true">↗</span></a>
+                    <a class="mtha-btn mtha-btn-secondary" href="#mtha-story">Đọc câu chuyện <span aria-hidden="true">↓</span></a>
+                </div>
+                <div class="mtha-hero-tags" aria-label="Điều MilkTeaHouse trân trọng">
+                    <span>Hương vị thân quen</span><span>Tùy chọn theo sở thích</span><span>Niềm vui để sẻ chia</span>
+                </div>
+            </div>
+            <div class="mtha-hero-visual">
+                <div class="mtha-hero-halo" aria-hidden="true"></div>
+                <figure class="mtha-hero-photo">
+                    <img src="@Url.Content("~/Content/images/products/tra-sua-tran-chau.png")"
+                         alt="Ly trà sữa trân châu đường đen trong bộ sưu tập MilkTeaHouse"
+                         loading="eager" />
+                </figure>
+                <div class="mtha-note mtha-note-top"><span aria-hidden="true">♥</span> HẠNH PHÚC TỪ ĐIỀU GIẢN DỊ</div>
+                <div class="mtha-note mtha-note-bottom">Dành một chút thời gian<br /><strong>cho điều mình yêu thích.</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mtha-story" id="mtha-story" aria-labelledby="mtha-story-title">
+        <div class="mtha-container mtha-story-grid">
+            <div class="mtha-story-visual">
+                <div class="mtha-story-photo">
+                    <img src="@Url.Content("~/Content/images/products/tra-sua-matcha.png")"
+                         alt="Đồ uống matcha trong bộ sưu tập MilkTeaHouse" loading="lazy" />
+                </div>
+                <div class="mtha-story-tag">CHỌN VỊ BẠN YÊU · CHỌN NIỀM VUI CỦA BẠN</div>
+            </div>
+            <div class="mtha-story-copy">
+                <span class="mtha-eyebrow">01 / CHÚNG MÌNH LÀ AI?</span>
+                <h2 id="mtha-story-title">Không chỉ là trà sữa.<br /><em>Đó là một khoảng nghỉ dễ thương.</em></h2>
+                <p>MilkTeaHouse bắt đầu từ một ý tưởng giản dị: đồ uống không chỉ giúp giải khát, mà còn có thể khiến một ngày thường trở nên đáng nhớ hơn.</p>
+                <p>Có người thích vị trà đậm, có người mê trân châu, có người muốn ít ngọt hơn một chút. Chúng mình tin rằng trải nghiệm ngon nhất là trải nghiệm phù hợp với <strong>chính bạn</strong>.</p>
+                <p>Vì vậy, MilkTeaHouse hướng đến một không gian thân thiện, nơi mỗi lựa chọn đều được trân trọng và mỗi cuộc trò chuyện đều có thể bắt đầu bằng câu hỏi: <strong>“Hôm nay bạn muốn uống gì?”</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mtha-values" aria-labelledby="mtha-values-title">
+        <div class="mtha-container">
+            <div class="mtha-section-heading">
+                <span class="mtha-eyebrow">02 / ĐIỀU CHÚNG MÌNH TRÂN TRỌNG</span>
+                <h2 id="mtha-values-title">Ba điều nhỏ, <em>một lời hứa lớn.</em></h2>
+                <p>Không cần những lời hứa thật hoa mỹ. Chúng mình chọn bắt đầu từ những điều khách hàng có thể cảm nhận trong từng trải nghiệm.</p>
+            </div>
+            <div class="mtha-value-grid">
+                <article class="mtha-value-card">
+                    <span class="mtha-value-icon" aria-hidden="true">✧</span>
+                    <span class="mtha-card-index">01</span>
+                    <h3>Trân trọng hương vị</h3>
+                    <p>Chú ý đến sự hài hòa giữa trà, sữa và topping, để mỗi lựa chọn đều mang lại cảm giác dễ chịu, hợp khẩu vị.</p>
+                </article>
+                <article class="mtha-value-card">
+                    <span class="mtha-value-icon" aria-hidden="true">♡</span>
+                    <span class="mtha-card-index">02</span>
+                    <h3>Tôn trọng sở thích riêng</h3>
+                    <p>Mỗi người có một “ly trà lý tưởng”. Size, topping và cách kết hợp hương vị giúp bạn tạo nên phiên bản của riêng mình.</p>
+                </article>
+                <article class="mtha-value-card">
+                    <span class="mtha-value-icon" aria-hidden="true">✳</span>
+                    <span class="mtha-card-index">03</span>
+                    <h3>Đặt sự tử tế lên đầu</h3>
+                    <p>Lắng nghe những lời góp ý, trình bày thông tin rõ ràng và luôn cố gắng khiến trải nghiệm đặt hàng trở nên thuận tiện hơn.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="mtha-quote" aria-label="Thông điệp của MilkTeaHouse">
+        <div class="mtha-container">
+            <div class="mtha-quote-mark" aria-hidden="true">“</div>
+            <blockquote>Một ngày đẹp không nhất thiết phải có điều gì thật lớn lao.<br /><strong>Đôi khi, chỉ cần đúng người và đúng ly trà.</strong></blockquote>
+            <div class="mtha-quote-sign">– MilkTeaHouse –</div>
+        </div>
+    </section>
+
+    <section class="mtha-experience" aria-labelledby="mtha-experience-title">
+        <div class="mtha-container">
+            <div class="mtha-section-heading">
+                <span class="mtha-eyebrow">03 / TRẢI NGHIỆM CỦA BẠN</span>
+                <h2 id="mtha-experience-title">Từng bước nhỏ, <em>thêm nhiều niềm vui.</em></h2>
+            </div>
+            <div class="mtha-steps">
+                <div class="mtha-step"><span>01</span><h3>Chọn hương vị</h3><p>Tìm món hợp tâm trạng: trà sữa, matcha hay trà trái cây.</p></div>
+                <div class="mtha-step"><span>02</span><h3>Thêm dấu ấn riêng</h3><p>Chọn size và topping để ly trà mang cá tính của bạn.</p></div>
+                <div class="mtha-step"><span>03</span><h3>Gửi đi niềm vui</h3><p>Đặt món và tận hưởng khoảnh khắc thư giãn của riêng mình.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mtha-cta" aria-labelledby="mtha-cta-title">
+        <div class="mtha-container mtha-cta-grid">
+            <div>
+                <span class="mtha-eyebrow mtha-eyebrow-light">HẸN BẠN Ở MILKTEAHOUSE</span>
+                <h2 id="mtha-cta-title">Hôm nay, bạn muốn<br /><em>thưởng cho mình vị gì?</em></h2>
+                <p>Dù là một ly quen thuộc hay một hương vị lần đầu thử, chúng mình hy vọng mỗi lựa chọn sẽ mang đến cho bạn thêm một chút niềm vui.</p>
+            </div>
+            <div class="mtha-cta-actions">
+                <a class="mtha-btn mtha-btn-light" href="@Url.Action("Index", "Menu")">Xem thực đơn <span aria-hidden="true">↗</span></a>
+                <a class="mtha-btn mtha-btn-outline" href="@Url.Action("Index", "Contact")">Gửi lời nhắn <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+    </section>
+</main>

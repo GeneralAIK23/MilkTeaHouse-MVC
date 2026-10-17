@@ -1,0 +1,29 @@
+﻿@model MilkTeaShopMVC.Models.FranchiseRequestItem
+@{ ViewBag.Title = "Chi tiết yêu cầu nhượng quyền"; }
+<section class="page container mts-admin-franchise">
+    <div class="eyebrow">MILKTEASHOP / QUẢN TRỊ</div>
+    <h1>Yêu cầu nhượng quyền #@Model.Id</h1>
+    @Html.Partial("~/Views/Shared/_AdminNav.cshtml")
+    <p><a href="@Url.Action("FranchiseRequests", "Admin")">← Quay lại danh sách</a></p>
+    <div class="panel mts-franchise-admin-detail">
+      <p><b>Họ và tên:</b> @Model.FullName</p>
+      <p><b>Giới tính:</b> @Model.Gender</p>
+      <p><b>Điện thoại:</b> @Model.Phone</p>
+      <p><b>Email:</b> @Model.Email</p>
+      <p><b>Khu vực:</b> @Model.Region</p>
+      <p><b>Nội dung:</b> @Model.Message</p>
+      <p><b>Tiếp nhận:</b> @Model.LocalTime.ToString("dd/MM/yyyy HH:mm")</p>
+      <p><b>Trạng thái:</b> @(Model.Status == "New" ? "Mới" : Model.Status == "Contacted" ? "Đã liên hệ" : "Đã xử lý")</p>
+      @using (Html.BeginForm("UpdateFranchiseStatus", "Admin", FormMethod.Post)) {
+          @Html.AntiForgeryToken()
+          <input type="hidden" name="id" value="@Model.Id" />
+          <label for="fr-status">Cập nhật trạng thái</label>
+          @Html.DropDownList("status", new[] {
+              new SelectListItem { Value = "New", Text = "Mới", Selected = Model.Status == "New" },
+              new SelectListItem { Value = "Contacted", Text = "Đã liên hệ", Selected = Model.Status == "Contacted" },
+              new SelectListItem { Value = "Closed", Text = "Đã xử lý", Selected = Model.Status == "Closed" }
+          }, new { @class = "field", id = "fr-status" })
+          <button class="btn primary" type="submit">Lưu trạng thái</button>
+      }
+    </div>
+</section>

@@ -1,0 +1,14 @@
+﻿@model MilkTeaShopMVC.Models.Order
+@{ViewBag.Title="Đơn hàng #"+Model.Id;}
+<section class="page container"><div class="eyebrow">ADMIN / ORDERS</div><h1>Đơn hàng #@Model.Id</h1>@Html.Partial("~/Views/Shared/_AdminNav.cshtml")<div class="panel"><p><b>Khách hàng:</b> @Model.CustomerName<br/><b>Điện thoại:</b> @Model.Phone<br/><b>Địa chỉ:</b> @Model.Address<br/><b>Ghi chú:</b> @Model.Note</p><h2>Chi tiết đơn</h2><div class="table-wrap"><table><thead><tr><th>Sản phẩm</th><th>Size</th><th>Topping</th><th>SL</th><th>Đơn giá</th></tr></thead><tbody>@foreach(var l in Model.Lines){<tr><td>@l.ProductName</td><td>@l.Size</td><td>@l.Toppings</td><td>@l.Quantity</td><td>@l.UnitPrice.ToString("N0") ₫</td></tr>}</tbody></table></div>@if(!string.IsNullOrWhiteSpace(Model.PromotionCode)) {
+  <div class="mth-admin-discount"><strong>Chi tiết khuyến mãi</strong><br />
+  Trước giảm: @((Model.OriginalTotal ?? Model.Total).ToString("N0")) đ<br />
+  Mã sử dụng: @Model.PromotionCode<br />
+  Đã giảm: @Model.DiscountAmount.ToString("N0") đ</div>
+}<div class="mth-admin-loyalty">
+ <p><strong>Thanh toán:</strong> @MilkTeaShopMVC.Models.MilkTeaStatusVi.Method(Model.PaymentMethod) / @MilkTeaShopMVC.Models.MilkTeaStatusVi.Payment(Model.PaymentStatus)</p>
+ <p><strong>Điểm sử dụng:</strong> @Model.PointsRedeemed (giảm @Model.PointsDiscount.ToString("N0") ₫)</p>
+ <p><strong>Điểm đã cộng:</strong> @Model.PointsEarned</p>
+ <p class="sub">Chỉ chọn Hoàn thành khi đã nhận tiền. Chọn Hủy đơn trước khi nhận tiền sẽ hoàn điểm đã sử dụng.</p>
+ @if(TempData["Error"] != null){<p style="color:#b23b36">@TempData["Error"]</p>}
+</div><h2>Tổng: @Model.Total.ToString("N0") ₫</h2>@using(Html.BeginForm("UpdateStatus","Admin",FormMethod.Post)){@Html.AntiForgeryToken()<input type="hidden" name="id" value="@Model.Id"/><label class="field-label">Trạng thái</label><select name="status" class="field smallfield">@foreach(var s in new[]{"Pending","Confirmed","Delivering","Completed","Cancelled"}){<option value="@s" @(Model.Status==s?"selected":"")>@MilkTeaShopMVC.Models.MilkTeaStatusVi.Order(s)</option>}</select><button class="btn primary" type="submit">Cập nhật</button>}</div></section>

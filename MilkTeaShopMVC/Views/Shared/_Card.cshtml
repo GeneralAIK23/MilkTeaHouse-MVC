@@ -1,0 +1,15 @@
+﻿@model MilkTeaShopMVC.Models.Product
+<article class="product-card"><a href="@Url.Action("Details","Product",new{id=Model.Id})" class="product-art @Model.Theme" style="position:relative;overflow:hidden;">@if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+{
+    <img src="@Url.Content("~" + Model.ImageUrl)"
+         alt="@Model.Name"
+         class="product-photo"
+         loading="lazy"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" />
+}
+else
+{
+    <span>@Model.Emoji</span>
+    <small>FRESH DAILY</small>
+}</a>
+<div class="product-info"><div class="product-type">@Model.Category.Name</div><h3><a href="@Url.Action("Details","Product",new{id=Model.Id})">@Model.Name</a></h3><div class="product-bottom"><b>@Model.Price.ToString("N0") ₫</b><a class="add-circle" href="@Url.Action("Details","Product",new{id=Model.Id})" aria-label="Xem sản phẩm">+</a></div></div></article>

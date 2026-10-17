@@ -1,0 +1,8 @@
+.mth-rewards-card{background:linear-gradient(135deg,#123f91,#102a56);color:#fff;border-radius:20px;padding:28px;max-width:580px;margin:20px 0 28px}
+.mth-rewards-card p{color:#e7effd}.mth-rewards-card strong{font-size:38px;display:block;margin:8px 0}
+.mth-rewards-table{width:100%;border-collapse:collapse;background:#fff}
+.mth-rewards-table th,.mth-rewards-table td{padding:12px 14px;border-bottom:1px solid #e5e7eb;text-align:left}
+.mth-positive{color:#07804a;font-weight:700}.mth-negative{color:#b23b36;font-weight:700}
+.mth-rewards-box{margin:18px 0;padding:16px;border:1px solid #dae3f1;border-radius:14px;background:#f3f7ff}
+.mth-rewards-box input{max-width:180px}.mth-rewards-box label{display:block;margin:8px 0;font-weight:600}
+.mth-rewards-box p{font-size:13px;color:#425775}

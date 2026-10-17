@@ -1,0 +1,13 @@
+﻿/* MilkTeaHouse: trang thuc don rieng, khong thay doi CSS san pham hien tai */
+.mth-menu-head {
+  background:linear-gradient(110deg,#fff4e6 0%,#fffaf5 65%,#f4e3cd 100%);
+  border-bottom:1px solid #ead7c4;
+  padding:54px 0 50px;
+}
+.mth-menu-head h1 { font-size:clamp(32px,4.5vw,52px); margin:0 0 12px;line-height:1.16;letter-spacing:-1.4px;color:#30251f; }
+.mth-menu-head p {font-size:15px;color:#6d5e52;max-width:630px;margin:0;}
+.mth-menu-head .mth-menu-crumb {font-size:12px;font-weight:700;color:#9a633e;margin-bottom:17px;}
+.mth-menu-head .mth-menu-crumb a {text-decoration:underline;text-underline-offset:3px;}
+.mth-menu-page {padding-top:48px;}
+.mth-menu-page .filter-row{scroll-margin-top:125px;}
+@media(max-width:650px) {.mth-menu-head {padding:34px 0 32px;}}

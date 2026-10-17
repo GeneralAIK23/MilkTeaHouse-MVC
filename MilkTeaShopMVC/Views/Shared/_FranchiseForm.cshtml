@@ -1,0 +1,46 @@
+﻿@model MilkTeaShopMVC.Models.FranchiseRequestForm
+@using (Html.BeginForm("Submit", "Franchise", FormMethod.Post, new { @class = "mts-franchise-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "mts-franchise-errors" })
+    <div class="mts-franchise-fields">
+        <div class="mts-franchise-field">
+            <label for="mts_franchise_name">Họ và tên *</label>
+            @Html.TextBoxFor(m => m.FullName, new { id = "mts_franchise_name", placeholder = "Họ và tên", required = "required", maxlength = "120", autocomplete = "name" })
+            @Html.ValidationMessageFor(m => m.FullName)
+        </div>
+        <div class="mts-franchise-field">
+            <label for="mts_franchise_gender">Giới tính</label>
+            @Html.DropDownListFor(m => m.Gender,
+              new SelectList(new[] { new { Value = "", Text = "Không cung cấp" }, new { Value = "Nam", Text = "Nam" }, new { Value = "Nữ", Text = "Nữ" }, new { Value = "Khác", Text = "Khác" } }, "Value", "Text"),
+              new { id = "mts_franchise_gender" })
+        </div>
+        <div class="mts-franchise-field">
+            <label for="mts_franchise_phone">Số điện thoại *</label>
+            @Html.TextBoxFor(m => m.Phone, new { id = "mts_franchise_phone", placeholder = "Số điện thoại", required = "required", maxlength = "25", autocomplete = "tel", type = "tel" })
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+        <div class="mts-franchise-field">
+            <label for="mts_franchise_email">Email *</label>
+            @Html.TextBoxFor(m => m.Email, new { id = "mts_franchise_email", placeholder = "Email", required = "required", maxlength = "200", autocomplete = "email", type = "email" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div class="mts-franchise-field mts-franchise-full">
+            <label for="mts_franchise_region">Khu vực muốn hợp tác *</label>
+            @Html.TextBoxFor(m => m.Region, new { id = "mts_franchise_region", placeholder = "Tỉnh/thành phố dự kiến", required = "required", maxlength = "160" })
+            @Html.ValidationMessageFor(m => m.Region)
+        </div>
+        <div class="mts-franchise-field mts-franchise-full">
+            <label for="mts_franchise_message">Nội dung quan tâm (tùy chọn)</label>
+            @Html.TextAreaFor(m => m.Message, new { id = "mts_franchise_message", placeholder = "Bạn muốn tìm hiểu điều gì?", maxlength = "1500", rows = "3" })
+        </div>
+        <div class="mts-franchise-hp" aria-hidden="true" tabindex="-1">
+            @Html.TextBoxFor(m => m.Website, new { tabindex = "-1", autocomplete = "off" })
+        </div>
+        <div class="mts-franchise-full mts-franchise-consent">
+            <label>@Html.CheckBoxFor(m => m.AcceptPrivacy) Tôi đồng ý để MilkTeaHouse lưu thông tin nhằm liên hệ về yêu cầu này.</label>
+            @Html.ValidationMessageFor(m => m.AcceptPrivacy)
+        </div>
+    </div>
+    <button class="mts-franchise-submit" type="submit">Gửi yêu cầu tư vấn →</button>
+}

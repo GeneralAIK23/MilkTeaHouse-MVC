@@ -1,0 +1,29 @@
+﻿@model MilkTeaShopMVC.Models.CheckoutViewModel
+@{ ViewBag.Title="Đặt hàng"; var total=Model.Items.Sum(x=>x.Subtotal); }
+<section class="page container"><div class="eyebrow">CHỈ CÒN MỘT BƯỚC</div>
+<h1>Hoàn tất <em>đặt hàng</em></h1><div class="cart-layout"><div class="panel formpanel">
+<h2>Thông tin nhận hàng</h2>
+@using(Html.BeginForm("Checkout","Order",FormMethod.Post)){
+ @Html.AntiForgeryToken()
+ @Html.ValidationSummary(false,"",new{@class="validation"})
+ <label class="field-label">Họ và tên *</label>
+ @Html.TextBoxFor(m=>m.CustomerName,new{@class="field",placeholder="Họ tên người nhận",maxlength="100",required="required"})
+ <label class="field-label">Số điện thoại *</label>
+ @Html.TextBoxFor(m=>m.Phone,new{@class="field",placeholder="09xxxxxxxx",maxlength="20",required="required"})
+ <label class="field-label">Địa chỉ giao hàng *</label>
+ @Html.TextBoxFor(m=>m.Address,new{@class="field",placeholder="Số nhà, đường, phường, quận...",maxlength="250",required="required"})
+ <label class="field-label">Ghi chú</label>
+ @Html.TextAreaFor(m=>m.Note,new{@class="field",rows="4",placeholder="Ít đá, ít đường...",maxlength="500"})
+ <button class="btn primary wide" type="submit">Xác nhận đặt hàng →</button>
+}
+</div><aside class="panel summary"><h2>Đơn hàng của bạn</h2>
+@foreach(var item in Model.Items){
+ <div class="summary-line"><span>@item.Quantity × @item.ProductName (size @item.Size)
+  @if(!string.IsNullOrWhiteSpace(item.ToppingSummary)){
+   <small style="display:block">Topping: @item.ToppingSummary</small>
+  }
+ </span><b>@item.Subtotal.ToString("N0") ₫</b></div>
+}
+<hr/><div class="summary-line grand"><span>Thành tiền</span><b>@total.ToString("N0") ₫</b></div>
+<p class="sub">Thanh toán khi nhận hàng. Phí giao hàng chưa bao gồm và sẽ được xác nhận riêng.</p>
+</aside></div></section>

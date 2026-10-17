@@ -1,0 +1,3 @@
+@model MilkTeaShopMVC.Models.Order
+@{ViewBag.Title="Đặt hàng thành công";}
+<section class="page container"><div class="success-page"><div class="success-symbol">✓</div><div class="eyebrow">ĐẶT HÀNG THÀNH CÔNG</div><h1>Cảm ơn bạn! 💛</h1><p>Đơn hàng <strong>#@Model.Id</strong> đã được ghi nhận vào hệ thống mô phỏng.</p><p>Khách hàng: @Model.CustomerName<br/>Tổng giá trị sản phẩm: <b>@Model.Total.ToString("N0") ₫</b></p><p class="sub">Đây là website phục vụ bài thực hành, không có giao hàng thật.</p><a class="btn primary" href="@Url.Action("Index","Home")">Tiếp tục khám phá →</a></div></section>

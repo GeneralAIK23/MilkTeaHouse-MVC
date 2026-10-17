@@ -1,0 +1,16 @@
+﻿<div id="mtsFranchiseModal" class="mts-franchise-overlay" hidden>
+    <div class="mts-franchise-dialog" role="dialog" aria-modal="true" aria-labelledby="mtsFranchiseTitle">
+        <button type="button" class="mts-franchise-close" data-mts-franchise-close aria-label="Đóng bảng tư vấn">×</button>
+        <div class="mts-franchise-promo">
+            <div class="mts-franchise-promo-top">MILKTEAHOUSE <span>•</span> CÙNG NHAU PHÁT TRIỂN</div>
+            <img src="@Url.Content("~/Content/images/products/tra-sua-tran-chau.png")" alt="Trà sữa MilkTeaShop" />
+            <div class="mts-franchise-promo-bottom"><span>HƯƠNG VỊ KẾT NỐI</span><strong>CƠ HỘI HỢP TÁC</strong><small>Đăng ký để tìm hiểu thêm</small></div>
+        </div>
+        <div class="mts-franchise-dialog-main">
+            <div class="mts-franchise-eyebrow">ĐỒNG HÀNH CÙNG MILKTEAHOUSE</div>
+            <h2 id="mtsFranchiseTitle">TƯ VẤN NHƯỢNG QUYỀN</h2>
+            <p>Để lại thông tin, đội ngũ MilkTeaHouse sẽ tiếp nhận yêu cầu tư vấn của bạn.</p>
+            @Html.Partial("~/Views/Shared/_FranchiseForm.cshtml", new MilkTeaShopMVC.Models.FranchiseRequestForm())
+        </div>
+    </div>
+</div>

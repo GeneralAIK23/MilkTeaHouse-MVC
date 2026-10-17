@@ -1,0 +1,19 @@
+﻿/* MilkTeaHouse - multi topping selector */
+.mth-toppings-head { display:flex; justify-content:space-between; align-items:center; gap:10px; margin:16px 0 10px; }
+.mth-toppings-head .field-label { display:block; margin:0 0 4px; }
+.mth-toppings-head small { display:block; color:#806957; font-size:12px; line-height:1.5; }
+.mth-toppings-clear { border:0; background:none; color:#20528e; cursor:pointer; font-weight:600; white-space:nowrap; }
+.mth-toppings-clear:hover { text-decoration:underline; }
+.mth-toppings-list { display:grid; gap:9px; margin-bottom:20px; }
+.mth-topping-row { display:flex; justify-content:space-between; gap:12px; align-items:center; padding:12px 14px; background:#fffaf4; border:1px solid #e8d7c8; border-radius:12px; }
+.mth-topping-info strong { display:block; font-size:14px; color:#292522; }
+.mth-topping-info small { display:block; margin-top:3px; color:#925b37; }
+.mth-stepper { display:flex; gap:6px; align-items:center; flex-shrink:0; }
+.mth-stepper button { width:34px; height:34px; display:grid; place-items:center; cursor:pointer; border:1px solid #e0cdbd; background:#fff; border-radius:8px; font-size:21px; color:#8d532f; }
+.mth-stepper button:hover { background:#f6e5d5; }
+.mth-stepper input { width:52px; min-height:34px; padding:4px; text-align:center; border:1px solid #e0cdbd; border-radius:8px; font-weight:700; }
+.mth-price-box { margin:18px 0; padding:16px; border:1px solid #e2d2c4; border-radius:14px; background:#fff8ef; }
+.mth-price-box > div { display:flex; justify-content:space-between; gap:12px; margin-bottom:9px; }
+.mth-price-box .mth-grand-total { border-top:1px solid #e2d2c4; padding-top:12px; margin:12px 0 0; font-size:18px; }
+.mth-price-box strong { color:#a75c35; }
+@media(max-width:550px) { .mth-topping-row{padding:10px 9px;} .mth-toppings-head {align-items:flex-start;flex-wrap:wrap;} }

@@ -1,0 +1,24 @@
+@model List<MilkTeaShopMVC.Models.DemoPaymentAccount>
+@using MilkTeaShopMVC.Models
+@{ViewBag.Title="Quản lý thanh toán demo";var pays=ViewBag.Transactions as List<PaymentTransaction> ?? new List<PaymentTransaction>();var logs=ViewBag.Ledger as List<DemoPaymentLedger> ?? new List<DemoPaymentLedger>();}
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-demo-payment.css")" />
+<section class="page container mth-demo"><div class="eyebrow">ADMIN / THANH TOÁN</div>
+<h1>Quản lý <em>thanh toán demo</em></h1>@Html.Partial("~/Views/Shared/_AdminNav.cshtml")
+<p class="mth-demo-alert">Mọi số dư và giao dịch chỉ dùng để mô phỏng cho môn học.</p>
+@if(TempData["PaymentError"]!=null){<p class="validation">@TempData["PaymentError"]</p>}
+@if(TempData["PaymentInfo"]!=null){<p class="mth-demo-ok">@TempData["PaymentInfo"]</p>}
+<div class="panel"><h2>Tài khoản demo và nạp tiền thử nghiệm</h2>
+<div class="table-wrap"><table><thead><tr><th>Chủ tài khoản</th><th>Phương thức</th><th>Số dư</th><th>Nạp demo</th></tr></thead><tbody>
+@foreach(var a in Model){<tr><td>@a.CustomerAccount.FullName (@a.CustomerAccount.Email)</td><td>@MilkTeaStatusVi.Method(a.Method)</td><td>@a.Balance.ToString("N0") ₫</td><td>
+@using(Html.BeginForm("TopUp","PaymentAdmin",FormMethod.Post)){@Html.AntiForgeryToken()<input type="hidden" name="accountId" value="@a.Id" /><input name="amount" type="number" min="10000" max="2000000" step="10000" value="100000" class="field" style="max-width:130px" /><button class="btn" type="submit">Nạp demo</button>}
+</td></tr>}
+@if(!Model.Any()){<tr><td colspan="4">Chưa có tài khoản demo.</td></tr>}
+</tbody></table></div></div>
+<div class="panel"><h2>Giao dịch thanh toán đơn hàng</h2><div class="table-wrap"><table><thead><tr><th>Mã</th><th>Đơn hàng</th><th>Phương thức</th><th>Số tiền</th><th>Trạng thái</th><th>Thời gian</th></tr></thead><tbody>
+@foreach(var p in pays){<tr><td>#@p.Id</td><td><a href="@Url.Action("OrderDetail","Admin",new{id=p.OrderId})">#@p.OrderId</a></td><td>@MilkTeaStatusVi.Method(p.Method)</td><td>@p.Amount.ToString("N0") ₫</td><td>@MilkTeaStatusVi.Payment(p.Status=="Pending"?"Unpaid":p.Status)</td><td>@p.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td></tr>}
+@if(!pays.Any()){<tr><td colspan="6">Chưa có giao dịch.</td></tr>}
+</tbody></table></div></div>
+<div class="panel"><h2>Biến động số dư gần đây</h2><div class="table-wrap"><table><thead><tr><th>Ngày</th><th>Tài khoản</th><th>Loại</th><th>Số tiền</th><th>Số dư sau</th></tr></thead><tbody>
+@foreach(var l in logs){<tr><td>@l.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td><td>#@l.DemoPaymentAccountId</td><td>@l.EntryType</td><td>@l.Amount.ToString("N0") ₫</td><td>@l.BalanceAfter.ToString("N0") ₫</td></tr>}
+@if(!logs.Any()){<tr><td colspan="5">Chưa có biến động.</td></tr>}
+</tbody></table></div></div></section>

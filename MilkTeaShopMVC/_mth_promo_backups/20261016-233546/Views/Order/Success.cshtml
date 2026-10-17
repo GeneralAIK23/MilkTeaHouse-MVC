@@ -1,0 +1,22 @@
+﻿@model MilkTeaShopMVC.Models.Order
+@{ViewBag.Title="Đặt hàng thành công";}
+<section class="page container"><div class="success-page">
+ <div class="success-symbol">✓</div><div class="eyebrow">ĐẶT HÀNG THÀNH CÔNG</div>
+ <h1>Cảm ơn bạn! 💛</h1>
+ <p>Đơn hàng <strong>#@Model.Id</strong> đã được MilkTeaHouse ghi nhận.</p>
+ <p>Khách hàng: @Model.CustomerName<br/>Tổng giá trị sản phẩm: <b>@Model.Total.ToString("N0") ₫</b></p>
+ <div class="panel" style="text-align:left;margin-top:20px">
+  <h3>Chi tiết đơn hàng</h3>
+  @foreach(var line in Model.Lines){
+   <p><strong>@line.Quantity × @line.ProductName</strong> (Size @line.Size)<br/>
+   @if(line.ToppingDetails != null && line.ToppingDetails.Count>0){
+     <small>Topping: @string.Join("; ", line.ToppingDetails.Select(t=>t.ToppingName+" x"+t.Quantity))</small><br/>
+   } else if(!string.IsNullOrWhiteSpace(line.Toppings)) {
+     <small>Topping: @line.Toppings</small><br/>
+   }
+   <b>@((line.UnitPrice*line.Quantity).ToString("N0")) ₫</b></p>
+  }
+ </div>
+ <p class="sub">Đơn hàng đang chờ cửa hàng xác nhận. Nếu cần hỗ trợ, vui lòng liên hệ MilkTeaHouse.</p>
+ <a class="btn primary" href="@Url.Action("Index","Menu")">Tiếp tục chọn món →</a>
+</div></section>

@@ -1,0 +1,21 @@
+﻿@model List<MilkTeaShopMVC.Models.FranchiseRequestItem>
+@{ ViewBag.Title = "Yêu cầu nhượng quyền"; }
+<section class="page container mts-admin-franchise">
+    <div class="eyebrow">MILKTEASHOP / QUẢN TRỊ</div>
+    <h1>Yêu cầu tư vấn nhượng quyền</h1>
+    @Html.Partial("~/Views/Shared/_AdminNav.cshtml")
+    <div class="panel">
+        <h2>Yêu cầu gần đây <small>(@Model.Count)</small></h2>
+        @if (Model.Count == 0) {
+            <p>Chưa có yêu cầu nào. Khi khách gửi từ biểu mẫu, thông tin sẽ xuất hiện ở đây.</p>
+        } else {
+          <div class="table-wrap"><table>
+             <thead><tr><th>Mã</th><th>Khách</th><th>Điện thoại</th><th>Khu vực</th><th>Thời gian</th><th>Trạng thái</th><th></th></tr></thead>
+             <tbody>@foreach (var x in Model) {
+                <tr><td>#@x.Id</td><td>@x.FullName</td><td>@x.Phone</td><td>@x.Region</td><td>@x.LocalTime.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@(x.Status == "New" ? "Mới" : x.Status == "Contacted" ? "Đã liên hệ" : "Đã xử lý")</td>
+                <td><a href="@Url.Action("FranchiseDetail", "Admin", new { id=x.Id })">Chi tiết →</a></td></tr>
+             }</tbody></table></div>
+        }
+    </div>
+</section>

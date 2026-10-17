@@ -1,0 +1,37 @@
+@model List<MilkTeaShopMVC.Models.DemoPaymentAccount>
+@using MilkTeaShopMVC.Models
+@{ ViewBag.Title="Ví và thẻ mô phỏng"; var ledger=ViewBag.Ledger as List<DemoPaymentLedger> ?? new List<DemoPaymentLedger>(); }
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-demo-payment.css")" />
+<section class="page container mth-demo"><div class="eyebrow">MILKTEAHOUSE • HỌC PHẦN LẬP TRÌNH WEB</div>
+<h1>Ví và thẻ <em>mô phỏng</em></h1>
+<p class="mth-demo-alert">Đây là hệ thống thanh toán nội bộ dùng cho đồ án. Số dư là tiền giả lập, không kết nối với MoMo hay ngân hàng thật.</p>
+@if(TempData["PaymentError"]!=null){<p class="validation">@TempData["PaymentError"]</p>}
+@if(TempData["PaymentInfo"]!=null){<p class="mth-demo-ok">@TempData["PaymentInfo"]</p>}
+<div class="mth-demo-cards">
+@foreach(var method in new[]{"MOMO","CARD"}) {
+ var wallet=Model.FirstOrDefault(x=>x.Method==method);
+ <div class="panel mth-demo-card">
+  <div class="eyebrow">@(method=="MOMO"?"VÍ ĐIỆN TỬ DEMO":"THẺ NGÂN HÀNG DEMO")</div>
+  <h2>@MilkTeaStatusVi.Method(method) <small>DEMO</small></h2>
+  @if(wallet!=null) {
+   <p>Số dư thử nghiệm</p><div class="mth-demo-balance">@wallet.Balance.ToString("N0") ₫</div>
+   <small>Mã tài khoản: #@wallet.Id • PIN được lưu dưới dạng băm trong SQL</small>
+  } else {
+   <p>Chưa có tài khoản demo. Mở tài khoản để nhận 500.000đ thử nghiệm.</p>
+   using(Html.BeginForm("Open","Payment",FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="method" value="@method" />
+    <label class="field-label">Tạo PIN mô phỏng 6 chữ số</label>
+    <input type="password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" name="pin" autocomplete="new-password" required class="field" />
+    <button class="btn primary" type="submit">Mở tài khoản demo</button>
+   }
+  }
+ </div>
+}
+</div>
+<div class="panel"><h2>Lịch sử biến động số dư</h2>
+<div class="table-wrap"><table><thead><tr><th>Ngày</th><th>Tài khoản</th><th>Nội dung</th><th>Biến động</th><th>Số dư sau</th></tr></thead><tbody>
+@foreach(var x in ledger) {<tr><td>@x.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td><td>@MilkTeaStatusVi.Method(x.DemoPaymentAccount.Method)</td><td>@x.Description</td><td>@x.Amount.ToString("N0") ₫</td><td>@x.BalanceAfter.ToString("N0") ₫</td></tr>}
+@if(!ledger.Any()){<tr><td colspan="5">Chưa có giao dịch.</td></tr>}
+</tbody></table></div></div>
+</section>

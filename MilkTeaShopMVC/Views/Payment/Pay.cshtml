@@ -1,0 +1,31 @@
+@model MilkTeaShopMVC.Models.Order
+@using MilkTeaShopMVC.Models
+@{ ViewBag.Title="Thanh toán đơn hàng demo";var wallet=ViewBag.Wallet as DemoPaymentAccount; }
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-demo-payment.css")" />
+<section class="page container mth-demo"><div class="eyebrow">THANH TOÁN HỌC PHẦN</div>
+<h1>@MilkTeaStatusVi.Method(Model.PaymentMethod) <em>mô phỏng</em></h1>
+<p class="mth-demo-alert">DEMO • Chỉ trừ số dư trong SQL Server MilkTeaShopMVC, không có tiền thật hay giao dịch ngân hàng.</p>
+@if(TempData["PaymentError"]!=null){<p class="validation">@TempData["PaymentError"]</p>}
+<div class="panel mth-demo-pay">
+<h2>Đơn hàng #@Model.Id</h2>
+<p>Trạng thái: <strong>@MilkTeaStatusVi.Payment(Model.PaymentStatus)</strong></p>
+<p>Phương thức: <strong>@MilkTeaStatusVi.Method(Model.PaymentMethod)</strong></p>
+<h2 class="mth-demo-balance">@Model.Total.ToString("N0") ₫</h2>
+@if(Model.PaymentStatus=="Paid") {
+ <p class="mth-demo-ok">Đã thanh toán thử nghiệm. Đơn sẽ được cộng điểm khi Admin hoàn tất.</p>
+ <a class="btn primary" href="@Url.Action("Success","Order",new{id=Model.Id})">Xem đơn hàng</a>
+} else if(Model.Status=="Cancelled") {
+ <p>Đơn đã hủy, không thể thanh toán.</p>
+} else if(wallet==null) {
+ <p>Bạn cần mở tài khoản @(Model.PaymentMethod=="MOMO"?"MoMo":"thẻ") demo trước khi trả tiền.</p>
+ <a class="btn primary" href="@Url.Action("Index","Payment")">Mở tài khoản mô phỏng</a>
+} else {
+ <p>Số dư demo: <strong>@wallet.Balance.ToString("N0") ₫</strong></p>
+ using(Html.BeginForm("Pay","Payment",new{id=Model.Id},FormMethod.Post,null)) {
+  @Html.AntiForgeryToken()
+  <label class="field-label">Nhập PIN demo (6 chữ số)</label>
+  <input class="field" name="pin" type="password" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="off" />
+  <button class="btn primary" type="submit">Xác nhận thanh toán demo @Model.Total.ToString("N0") ₫</button>
+ }
+}
+</div></section>

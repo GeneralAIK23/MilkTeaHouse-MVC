@@ -1,0 +1,17 @@
+@model System.Collections.Generic.List<MilkTeaShopMVC.Models.LoyaltyPointTransaction>
+@{ ViewBag.Title="Điểm thưởng MilkTeaHouse"; }
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-rewards.css")" />
+<section class="page container mth-rewards-page">
+ <div class="eyebrow">MILKTEAHOUSE REWARDS</div>
+ <h1>Điểm thưởng của bạn</h1>
+ <div class="mth-rewards-card"><p>Chào @ViewBag.CustomerName, bạn hiện có</p>
+  <strong>@ViewBag.PointsBalance điểm</strong>
+  <p>10.000đ thanh toán = 1 điểm · 1 điểm đổi 200đ</p></div>
+ <h2>Lịch sử tích và sử dụng điểm</h2>
+ <div class="table-wrap"><table class="mth-rewards-table"><thead><tr><th>Thời gian</th><th>Đơn hàng</th><th>Giao dịch</th><th>Thay đổi điểm</th></tr></thead>
+ <tbody>
+ @foreach(var tx in Model) {<tr><td>@tx.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td><td>#@tx.OrderId</td><td>@tx.Description</td><td class="@(tx.PointsDelta>0?"mth-positive":"mth-negative")">@(tx.PointsDelta>0?"+":"")@tx.PointsDelta</td></tr>}
+ @if(Model.Count==0){<tr><td colspan="4">Bạn chưa có giao dịch điểm. Điểm sẽ được cộng sau khi đơn đã thanh toán và hoàn tất.</td></tr>}
+ </tbody></table></div>
+ <p><a class="btn primary" href="@Url.Action("Index","Menu")">Khám phá thực đơn →</a></p>
+</section>

@@ -1,0 +1,32 @@
+@model List<MilkTeaShopMVC.Models.PromotionCode>
+@{ ViewBag.Title = "Ưu đãi & khuyến mãi"; }
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-promotions.css")" />
+<section class="mth-promo-page container">
+ <div class="mth-promo-hero"><div class="eyebrow">ĐẶC QUYỀN NGỌT NGÀO</div>
+ <h1>Ưu đãi dành cho bạn <span>🎁</span></h1>
+ <p>Mỗi ly trà thêm một niềm vui. Chọn mã phù hợp, nhập ở bước thanh toán để nhận ưu đãi tại MilkTeaHouse.</p>
+ <a class="mth-promo-btn" href="@Url.Action("Index","Menu")">Chọn đồ uống ngay →</a></div>
+ <h2>Mã ưu đãi đang áp dụng</h2>
+ @if (!Model.Any()) { <div class="mth-promo-empty">Hiện chưa có chương trình giảm giá đang hoạt động. Bạn ghé lại sau nhé!</div> }
+ else { <div class="mth-promo-grid">
+ @foreach(var promo in Model) {
+  <div class="mth-promo-card">
+   <div class="mth-promo-cardtop"><span class="mth-promo-tag">ƯU ĐÃI</span><strong>@promo.Code</strong></div>
+   <h3>@(promo.DiscountType=="Percent" ? "Giảm " + promo.DiscountValue.ToString("N0") + "%" : "Giảm " + promo.DiscountValue.ToString("N0") + "đ")</h3>
+   <p>@promo.Description</p>
+   <div class="mth-promo-terms">Đơn tối thiểu: <strong>@promo.MinimumOrder.ToString("N0")đ</strong></div>
+   @if(promo.MaximumDiscount.HasValue){<div class="mth-promo-terms">Giảm tối đa: @promo.MaximumDiscount.Value.ToString("N0")đ</div>}
+   <div class="mth-promo-terms">Đến ngày: @promo.EndAt.ToString("dd/MM/yyyy HH:mm")</div>
+   <button class="mth-copy-promo" type="button" data-code="@promo.Code">Sao chép mã</button>
+  </div>
+ }
+ </div>}
+ <div class="mth-promo-note">Mỗi đơn hàng chỉ áp dụng một mã. Giảm giá áp dụng lên tiền sản phẩm, size và topping; chưa bao gồm phí giao hàng.</div>
+</section>
+<script>
+document.querySelectorAll('.mth-copy-promo').forEach(function(b){b.addEventListener('click',function(){
+ var code=b.getAttribute('data-code');if(navigator.clipboard && navigator.clipboard.writeText){
+ navigator.clipboard.writeText(code).then(function(){b.textContent='Đã sao chép ✓';}).catch(function(){window.prompt('Sao chép mã:',code);});
+ }else{window.prompt('Sao chép mã:',code);}
+});});
+</script>

@@ -1,0 +1,16 @@
+﻿@using MilkTeaShopMVC.Models
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>@ViewBag.Title - MilkTea House</title><link rel="stylesheet" href="@Url.Content("~/Content/site.css")" /><link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")" />
+</head>
+<body>
+<header class="topbar"><div class="container nav">
+ <a class="brand" href="@Url.Action("Index","Home")"><span class="brand-icon">🧋</span> MILKTEA<span>HOUSE</span></a>
+ <nav class="links"><a href="@Url.Action("Index","Home")">Trang chủ</a><a href="@Url.Action("Index","Home")#menu">Thực đơn</a><a href="@Url.Action("About","Home")">Về chúng tôi</a><a href="@Url.Action("Index","Admin")">Quản trị</a></nav>
+ <a class="cart-pill" href="@Url.Action("Index","Cart")">🛒 Giỏ hàng <span>@CartStore.Count(Session)</span></a>
+</div></header>
+<main>@RenderBody()</main>
+<footer class="footer"><div class="container footergrid"><div><div class="brand">🧋 MILKTEA<span>HOUSE</span></div><p>Vị trà bạn yêu, niềm vui mỗi ngày.</p></div><div><strong>Thông tin</strong><p>Website thực hành ASP.NET MVC 5 & Entity Framework 6.</p></div><div><strong>Liên hệ</strong><p>Đồ án môn Lập trình Web<br/>Đại học Nguyễn Tất Thành</p></div></div><div class="container footnote">© @DateTime.Now.Year MilkTea House • Dự án học tập, không phải cửa hàng thương mại thật.</div></footer>
+<script src="@Url.Content("~/Scripts/bootstrap.bundle.min.js")"></script>
+</body></html>
+
+

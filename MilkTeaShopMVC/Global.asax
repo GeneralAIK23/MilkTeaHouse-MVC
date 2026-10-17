@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="MilkTeaShopMVC.MvcApplication" Language="C#" %>

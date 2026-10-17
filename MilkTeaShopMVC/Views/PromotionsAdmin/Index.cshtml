@@ -1,0 +1,38 @@
+@model List<MilkTeaShopMVC.Models.PromotionCode>
+@{ ViewBag.Title = "Quản lý khuyến mãi"; }
+<link rel="stylesheet" href="@Url.Content("~/Content/mth-promotions.css")" />
+<section class="page container mth-promo-admin">
+ <div class="eyebrow">MILKTEAHOUSE / QUẢN TRỊ</div>
+ <h1>Mã khuyến mãi</h1>
+ @Html.Partial("~/Views/Shared/_AdminNav.cshtml")
+ @if(TempData["Success"]!=null){<p class="mth-promo-good">@TempData["Success"]</p>}
+ @if(TempData["Error"]!=null){<p class="mth-promo-warn">@TempData["Error"]</p>}
+ <div class="mth-admin-grid"><div class="mth-admin-panel">
+  <h2>Tạo mã mới</h2>
+  @using(Html.BeginForm("Create","PromotionsAdmin",FormMethod.Post)){
+   @Html.AntiForgeryToken()
+   <label>Mã (chữ in hoa, số, dấu -)</label><input name="Code" required maxlength="40" placeholder="MTHVIP15" pattern="[a-zA-Z0-9-]{3,40}" />
+   <label>Mô tả ưu đãi</label><input name="Description" required maxlength="160" placeholder="Giảm 15% cho đơn từ..." />
+   <label>Loại giảm</label><select name="DiscountType" required><option value="Percent">Phần trăm (%)</option><option value="Fixed">Số tiền (đ)</option></select>
+   <label>Giá trị giảm</label><input type="number" name="DiscountValue" min="1" max="1000000" step="1" required value="10" />
+   <label>Giá trị đơn tối thiểu (đ)</label><input type="number" name="MinimumOrder" min="0" step="1000" value="80000" required />
+   <label>Giảm tối đa (đ, bỏ trống nếu không giới hạn)</label><input type="number" name="MaximumDiscount" min="1" step="1000" />
+   <label>Bắt đầu</label><input type="datetime-local" name="StartAt" required value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+   <label>Kết thúc</label><input type="datetime-local" name="EndAt" required value="@DateTime.Now.AddDays(30).ToString("yyyy-MM-ddTHH:mm")" />
+   <label>Giới hạn lượt dùng (bỏ trống nếu không giới hạn)</label><input type="number" name="UsageLimit" min="1" max="1000000" />
+   <button class="mth-promo-btn" type="submit">Tạo mã khuyến mãi</button>
+  }
+ </div><div class="mth-admin-panel mth-admin-list"><h2>Mã đã tạo</h2>
+  @if(!Model.Any()){<p>Chưa có mã khuyến mãi nào.</p>}
+  else{<div class="mth-promo-tablewrap"><table class="mth-promo-table"><thead><tr><th>Mã</th><th>Loại</th><th>Giá trị</th><th>Đơn tối thiểu</th><th>Đã dùng</th><th>Đến hạn</th><th>Trạng thái</th><th></th></tr></thead><tbody>
+   @foreach(var promo in Model){<tr>
+    <td><strong>@promo.Code</strong><small>@promo.Description</small></td><td>@promo.DiscountType</td><td>@promo.DiscountValue.ToString("N0")</td>
+    <td>@promo.MinimumOrder.ToString("N0")đ</td><td>@promo.UsedCount @(promo.UsageLimit.HasValue?"/ "+promo.UsageLimit.Value:"")</td>
+    <td>@promo.EndAt.ToString("dd/MM/yyyy")</td><td>@(promo.IsActive?"Bật":"Tắt")</td>
+    <td>@using(Html.BeginForm("Toggle","PromotionsAdmin",FormMethod.Post)){
+     @Html.AntiForgeryToken()<input type="hidden" name="id" value="@promo.Id" /><button type="submit">@(promo.IsActive?"Tắt":"Bật")</button>
+    }</td>
+   </tr>}
+  </tbody></table></div>}
+ </div></div>
+</section>

@@ -1,0 +1,11 @@
+﻿@model MilkTeaShopMVC.Models.FranchiseRequestForm
+@{ ViewBag.Title = "Tư vấn nhượng quyền"; }
+<section class="mts-franchise-page page container">
+  <div class="eyebrow">MILKTEASHOP / HỢP TÁC</div>
+  <h1>Tư vấn nhượng quyền MilkTeaShop</h1>
+  <p>Để lại thông tin để đội ngũ phụ trách liên hệ trao đổi thêm. Đây là form tiếp nhận quan tâm; không phải cam kết nhượng quyền.</p>
+  @if (TempData["FranchiseSuccess"] != null) {
+    <div class="mts-franchise-success" role="status">@TempData["FranchiseSuccess"]</div>
+  }
+  @Html.Partial("~/Views/Shared/_FranchiseForm.cshtml", Model)
+</section>

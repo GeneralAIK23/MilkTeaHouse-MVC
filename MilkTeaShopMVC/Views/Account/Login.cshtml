@@ -1,0 +1,20 @@
+﻿@model MilkTeaShopMVC.Models.CustomerLoginViewModel
+@{ ViewBag.Title = "Đăng nhập khách hàng"; }
+<section class="page container mts-account-page">
+  <div class="mts-account-card">
+    <div class="eyebrow">CHÀO MỪNG TRỞ LẠI</div>
+    <h1>Đăng nhập</h1>
+    <p class="sub">Đăng nhập để thanh toán và xem lịch sử đơn hàng MilkTeaShop.</p>
+    @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post)) {
+      @Html.AntiForgeryToken()
+      @Html.ValidationSummary(false, "", new { @class = "validation" })
+      <label class="field-label" for="Email">Email</label>
+      @Html.TextBoxFor(m => m.Email, new { @class = "field", type = "email", autocomplete = "username", required = "required" })
+      <label class="field-label" for="Password">Mật khẩu</label>
+      @Html.PasswordFor(m => m.Password, new { @class = "field", autocomplete = "current-password", required = "required" })
+      <button class="btn primary wide mts-auth-submit" type="submit">Đăng nhập →</button>
+    }
+    <p class="mts-auth-switch">Chưa có tài khoản? <a href="@Url.Action("Register", "Account", new { returnUrl = ViewBag.ReturnUrl })">Đăng ký ngay</a></p>
+    <p class="sub">Tài khoản quản trị sử dụng trang Đăng nhập Admin riêng.</p>
+  </div>
+</section>

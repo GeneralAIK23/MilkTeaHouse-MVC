@@ -1,0 +1,3 @@
+@model List<MilkTeaShopMVC.Models.Category>
+@{ViewBag.Title="Danh mục";}
+<section class="page container"><div class="eyebrow">ADMIN / CATEGORIES</div><h1>Danh mục</h1>@Html.Partial("~/Views/Shared/_AdminNav.cshtml")<div class="panel max-form"><h2>Thêm danh mục</h2>@using(Html.BeginForm("AddCategory","Admin",FormMethod.Post)){@Html.AntiForgeryToken()<input class="field" name="name" maxlength="80" required placeholder="Tên danh mục"/><button class="btn primary" type="submit">Thêm danh mục</button>}<h2>Danh sách</h2>@foreach(var c in Model){<p>☕ @c.Name</p>}</div></section>

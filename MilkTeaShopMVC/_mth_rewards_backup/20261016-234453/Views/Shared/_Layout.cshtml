@@ -1,0 +1,262 @@
+﻿@using MilkTeaShopMVC.Models
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>@ViewBag.Title - MilkTea House</title><link rel="stylesheet" href="@Url.Content("~/Content/site.css")" /><link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")" />
+<link rel="stylesheet" href="@Url.Content("~/Content/contact.css")" /><link rel="stylesheet" href="@Url.Content("~/Content/franchise.css")" /><link rel="stylesheet" href="@Url.Content("~/Content/customer-account.css")" /><link rel="stylesheet" href="@Url.Content("~/Content/milkteahouse-menu.css")" /><!-- MTH FOOTER CSS START -->
+<style>
+footer.mth-footer {
+    display: block;
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    padding: 65px 0 0;
+    background: #142945 !important;
+    color: #d6e1ed;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.7;
+    clear: both;
+}
+
+footer.mth-footer * {
+    box-sizing: border-box;
+}
+
+footer.mth-footer .mth-footer-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+footer.mth-footer .mth-footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+    gap: 40px;
+    padding-bottom: 55px;
+}
+
+footer.mth-footer .mth-footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+    font-weight: 800;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer.mth-footer .mth-accent {
+    color: #f3ad75;
+}
+
+footer.mth-footer .mth-footer-cup {
+    font-size: 30px;
+}
+
+footer.mth-footer h3 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 20px;
+}
+
+footer.mth-footer p {
+    color: #b9cadc;
+    font-size: 14px;
+    line-height: 1.85;
+    margin: 0 0 14px;
+}
+
+footer.mth-footer .mth-footer-slogan {
+    color: #f3ad75;
+    font-weight: 600;
+    margin-top: 14px;
+}
+
+footer.mth-footer .mth-footer-links a {
+    display: block;
+    margin-bottom: 12px;
+}
+
+footer.mth-footer a {
+    color: #d6e1ed;
+    text-decoration: none;
+}
+
+footer.mth-footer a:hover {
+    color: #f3ad75;
+    text-decoration: none;
+}
+
+footer.mth-footer .mth-footer-cta,
+footer.mth-footer .mth-footer-contact-btn {
+    display: inline-block;
+    background: #2861a6;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 9px;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+footer.mth-footer .mth-footer-cta:hover,
+footer.mth-footer .mth-footer-contact-btn:hover {
+    background: #367acb;
+    color: white;
+}
+
+footer.mth-footer .mth-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding: 22px 0;
+    color: #b9cadc;
+    font-size: 13px;
+}
+
+@@media (max-width: 900px) {
+    footer.mth-footer .mth-footer-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 30px;
+    }
+}
+
+@@media (max-width: 560px) {
+    footer.mth-footer {
+        padding-top: 42px;
+    }
+
+    footer.mth-footer .mth-footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer.mth-footer .mth-footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+<!-- MTH FOOTER CSS END -->
+</head>
+<body>
+<header class="topbar"><div class="container nav">
+ <a class="brand" href="@Url.Action("Index","Home")"><span class="brand-icon">🧋</span> MILKTEA<span>HOUSE</span></a>
+ <nav class="links"><a href="@Url.Action("Index","Home")">Trang chủ</a><a href="@Url.Action("Index","Menu")">Thực đơn</a><a href="@Url.Action("About","Home")">Về chúng tôi</a><a href="@Url.Action("Index","Admin")">Quản trị</a><a href="@Url.Action("Index","Contact")">Liên hệ</a><a class="mts-franchise-link" data-mts-franchise-open href="@Url.Action("Index","Franchise")">TƯ VẤN NHƯỢNG QUYỀN</a>@if (MilkTeaShopMVC.Models.CustomerAuth.CustomerId(ViewContext.HttpContext) > 0) {
+  <a class="mts-account-link" href="@Url.Action("Profile","Account")">Tài khoản</a>
+  <a class="mts-account-link" href="@Url.Action("MyOrders","Order")">Đơn hàng của tôi</a>
+  using (Html.BeginForm("Logout","Account",FormMethod.Post,new { @class = "mts-logout-form" })) {
+    @Html.AntiForgeryToken()
+    <button type="submit">Đăng xuất</button>
+  }
+} else {
+  <a class="mts-account-link" href="@Url.Action("Login","Account")">Đăng nhập</a>
+  <a class="mts-account-link" href="@Url.Action("Register","Account")">Đăng ký</a>
+}<a href="@Url.Action("Index","Promotions")">Ưu đãi</a></nav>
+ <a class="cart-pill" href="@Url.Action("Index","Cart")">🛒 Giỏ hàng <span>@CartStore.Count(Session)</span></a>
+</div></header>
+<main>@RenderBody()</main>
+<footer class="mth-footer">
+    <div class="mth-footer-container">
+        <div class="mth-footer-grid">
+
+            <div class="mth-footer-brand">
+                <a class="mth-footer-logo"
+                   href="@Url.Action("Index","Home")">
+                    <span class="mth-footer-cup">🧋</span>
+                    <span>MilkTea<span class="mth-accent">House</span></span>
+                </a>
+
+                <p class="mth-footer-slogan">
+                    Một ly trà ngon, thêm một lý do để mỉm cười.
+                </p>
+
+                <p>
+                    Kết nối những khoảnh khắc ngọt ngào
+                    qua hương vị trà sữa và niềm vui mỗi ngày.
+                </p>
+
+                <a class="mth-footer-cta"
+                   href="@Url.Action("Index","Menu")">
+                    Khám phá thực đơn &rarr;
+                </a>
+            </div>
+
+            <div class="mth-footer-links">
+                <h3>Khám phá</h3>
+
+                <a href="@Url.Action("Index","Home")">
+                    Trang chủ
+                </a>
+
+                <a href="@Url.Action("Index","Menu")">
+                    Thực đơn
+                </a>
+
+                <a href="@Url.Action("About","Home")">
+                    Về chúng tôi
+                </a>
+
+                <a href="@Url.Action("Index","Contact")">
+                    Liên hệ
+                </a>
+            </div>
+
+            <div class="mth-footer-links">
+                <h3>Khách hàng</h3>
+
+                <a href="@Url.Action("Login","Account")">
+                    Đăng nhập
+                </a>
+
+                <a href="@Url.Action("Register","Account")">
+                    Đăng ký tài khoản
+                </a>
+
+                <a href="@Url.Action("Index","Cart")">
+                    Giỏ hàng
+                </a>
+
+                <a href="@Url.Action("Index","Contact")">
+                    Hỗ trợ khách hàng
+                </a>
+            </div>
+
+            <div class="mth-footer-contact">
+                <h3>Kết nối cùng MilkTeaHouse</h3>
+
+                <p>
+                    Bạn cần hỗ trợ đặt hàng, muốn góp ý
+                    hoặc tìm hiểu cơ hội hợp tác?
+                </p>
+
+                <p>
+                    MilkTeaHouse luôn trân trọng
+                    những chia sẻ của bạn.
+                </p>
+
+                <a class="mth-footer-contact-btn"
+                   href="@Url.Action("Index","Contact")">
+                    Gửi lời nhắn &rarr;
+                </a>
+            </div>
+
+        </div>
+
+        <div class="mth-footer-bottom">
+            <span>
+                &copy; @DateTime.Now.Year MilkTeaHouse.
+                All rights reserved.
+            </span>
+
+            <span>
+                Hương vị yêu thích, niềm vui mỗi ngày.
+            </span>
+        </div>
+    </div>
+</footer>
+<script src="@Url.Content("~/Scripts/bootstrap.bundle.min.js")"></script>
+@if (Convert.ToString(ViewContext.RouteData.Values["controller"]) != "Franchise") { @Html.Partial("~/Views/Shared/_FranchiseModal.cshtml") }
+<script src="@Url.Content("~/Content/franchise.js")"></script>
+</body></html>
+
+

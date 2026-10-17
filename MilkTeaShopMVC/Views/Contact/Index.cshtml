@@ -1,0 +1,77 @@
+﻿@model MilkTeaShopMVC.Models.ContactFormViewModel
+@{
+    ViewBag.Title = "Liên hệ";
+}
+<section class="contact-hero">
+    <div class="container contact-hero-inner">
+        <div class="contact-crumb"><a href="@Url.Action("Index", "Home")">Trang chủ</a> / Liên hệ</div>
+        <h1>LIÊN HỆ BỘ PHẬN CHĂM SÓC KHÁCH HÀNG</h1>
+        <p>Bạn có câu hỏi về sản phẩm, đơn hàng hoặc muốn góp ý? MilkTeaHouse luôn sẵn sàng lắng nghe.</p>
+    </div>
+</section>
+<section class="contact-section">
+    <div class="container contact-grid">
+        <div class="contact-form-column">
+            <div class="contact-eyebrow">KẾT NỐI VỚI MILKTEAHOUSE</div>
+            <h2>HỖ TRỢ &amp; GIẢI ĐÁP</h2>
+            <p class="contact-intro">Mọi lời nhắn của bạn đều rất quan trọng với chúng mình.</p>
+
+            @if (TempData["ContactSuccess"] != null)
+            {
+                <div class="contact-alert success" role="status">@TempData["ContactSuccess"]</div>
+            }
+
+            @using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { @class = "contact-form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "contact-validation" })
+
+                <div class="contact-fields-grid">
+                    <div>
+                        @Html.TextBoxFor(m => m.FullName, new { @class = "contact-input", placeholder = "Họ và tên *", autocomplete = "name", required = "required", maxlength = "120" })
+                        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "contact-validation" })
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "contact-input", placeholder = "Email *", type = "email", autocomplete = "email", required = "required", maxlength = "200" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "contact-validation" })
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.Address, new { @class = "contact-input", placeholder = "Địa chỉ (tùy chọn)", autocomplete = "street-address", maxlength = "250" })
+                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "contact-validation" })
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "contact-input", placeholder = "Số điện thoại (tùy chọn)", type = "tel", autocomplete = "tel", maxlength = "25" })
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "contact-validation" })
+                    </div>
+                </div>
+                <div>
+                    @Html.TextAreaFor(m => m.Message, new { @class = "contact-input contact-textarea", placeholder = "Nhập nội dung chi tiết của bạn *", rows = "6", required = "required", maxlength = "3000" })
+                    @Html.ValidationMessageFor(m => m.Message, "", new { @class = "contact-validation" })
+                </div>
+                <div class="contact-honeypot" aria-hidden="true">
+                    @Html.TextBoxFor(m => m.Website, new { tabindex = "-1", autocomplete = "off" })
+                </div>
+                <label class="contact-consent">
+                    @Html.CheckBoxFor(m => m.Consent)
+                    <span>Tôi đồng ý gửi thông tin để MilkTeaHouse xử lý yêu cầu liên hệ.</span>
+                </label>
+                @Html.ValidationMessageFor(m => m.Consent, "", new { @class = "contact-validation" })
+                <button type="submit" class="contact-submit">GỬI TIN NHẮN CỦA BẠN <span aria-hidden="true">➜</span></button>
+            }
+          
+        </div>
+
+        <aside class="contact-info-card">
+            <div class="contact-logo-mark">🧋</div>
+            <div class="contact-business-name">MilkTea<span>House</span></div>
+            <p class="contact-business-tagline">MỘT CHÚT NGỌT NGÀO, CẢ NGÀY THÊM VUI</p>
+            <div class="contact-info-divider"></div>
+            <h3>Thông tin cửa hàng</h3>
+            <p><strong>Địa chỉ:</strong> 331 Đỗ Mười,P.An Phú Đông,TP.Hồ Chí Minh</p>
+            <p><strong>Điện thoại:</strong> 0393553113</p>
+            <p><strong>Email liên hệ:</strong> 2311555809@nttu.edu.vn</p>
+            <p><strong>Giờ hỗ trợ:</strong> T2–CN: 8:00–22:00</p>
+            <div class="contact-info-bottom">Liên hệ ngay trên biểu mẫu để gửi lời nhắn cho MilkTeaHouse.</div>
+        </aside>
+    </div>
+</section>
