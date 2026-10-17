@@ -19,3 +19,5 @@
 **/Backup/
 **/Backups/
 /MilkTeaShopMVC/Web.config
+
+**/__mth_*backups/
